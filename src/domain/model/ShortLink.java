@@ -1,13 +1,61 @@
 package domain.model;
+import java.time.Duration;
 import java.util.UUID;
 import java.time.Instant;
 
 public class ShortLink {
     private int  clickCounter;
     private int maxClicks;
-    private UUID ownerUuid;
-    private String longURL;
-    private String shortCode;
-    private Instant createdAt;
-    private Instant expiresAt;
+    private final UUID ownerUuid;
+    private final String longUrl;
+    private final String shortCode;
+    private final Instant createdAt;
+    private final Instant expiresAt;
+
+    public ShortLink(String longUrl, int ttlHours, int maxClicks, UUID ownerUuid, String shortCode){
+        this.createdAt = Instant.now();
+        this.expiresAt = this.createdAt.plus(Duration.ofHours(ttlHours));
+        this.longUrl = longUrl;
+        this.maxClicks = maxClicks;
+        this.ownerUuid = ownerUuid;
+        this.clickCounter = 0;
+        this.shortCode = shortCode;
+    }
+    public boolean isExpired() {
+        return this.expiresAt.isBefore(Instant.now());
+    }
+
+    public boolean isClickLimitReached() {
+        return this.clickCounter >= this.maxClicks;
+    }
+
+    //Геттеры
+    public void incrementClicks() {
+        this.clickCounter++;
+    }
+
+    public String getLongUrl() {
+        return longUrl;
+    }
+
+    public int getClickCounter() {
+        return clickCounter;
+    }
+
+    public int getMaxClicks() {
+        return maxClicks;
+    }
+
+    public UUID getOwnerUuid() {
+        return ownerUuid;
+    }
+
+    public String getShortCode() {
+        return shortCode;
+    }
+
+    //Сеттер для максимального количества кликов
+    public void setMaxClicks(int maxClicks) {
+        this.maxClicks = maxClicks;
+    }
 }
