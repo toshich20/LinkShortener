@@ -4,15 +4,15 @@ import java.util.UUID;
 import java.time.Instant;
 
 public class ShortLink {
-    private int  clickCounter;
-    private int maxClicks;
+    private long  clickCounter;
+    private long maxClicks;
     private final UUID ownerUuid;
     private final String longUrl;
     private final String shortCode;
     private final Instant createdAt;
     private final Instant expiresAt;
 
-    public ShortLink(String longUrl, int ttlHours, int maxClicks, UUID ownerUuid, String shortCode){
+    public ShortLink(String longUrl, long ttlHours, long maxClicks, UUID ownerUuid, String shortCode){
         this.createdAt = Instant.now();
         this.expiresAt = this.createdAt.plus(Duration.ofHours(ttlHours));
         this.longUrl = longUrl;
@@ -38,11 +38,11 @@ public class ShortLink {
         return longUrl;
     }
 
-    public int getClickCounter() {
+    public long getClickCounter() {
         return clickCounter;
     }
 
-    public int getMaxClicks() {
+    public long getMaxClicks() {
         return maxClicks;
     }
 
@@ -55,7 +55,7 @@ public class ShortLink {
     }
 
     //Сеттер для максимального количества кликов
-    public void setMaxClicks(int maxClicks) {
+    public void setMaxClicks(long maxClicks) {
         this.maxClicks = maxClicks;
     }
 }
