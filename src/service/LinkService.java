@@ -9,6 +9,7 @@ import domain.model.ShortLink;
 import repository.InMemoryLinkRepository;
 import repository.LinkRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 public class LinkService {
@@ -98,5 +99,9 @@ public class LinkService {
     public void deleteLink(String shortCode, UUID userUuid) {
         getLinkAndCheckOwner(shortCode, userUuid);
         linkRepository.deleteByCode(shortCode);
+    }
+
+    public List<ShortLink> getUserLinks(UUID userUuid) {
+        return linkRepository.findByOwnerUuid(userUuid);
     }
 }
