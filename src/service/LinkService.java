@@ -47,6 +47,11 @@ public class LinkService {
         return shortLink;
     }
 
+    //Короткий с двумя аргументами
+    public ShortLink createLink(String originalUrl, UUID ownerUuid) {
+        return createLink(originalUrl, ownerUuid, null, null);
+    }
+
     boolean isValidUrl(String url) {
         return url.startsWith("http://") || url.startsWith("https://");
     }
