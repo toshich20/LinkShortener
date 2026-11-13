@@ -54,6 +54,10 @@ public class ShortLink {
         return shortCode;
     }
 
+    public Instant getExpiresAt() {
+        return expiresAt;
+    }
+
     //Сеттер для максимального количества кликов
     public void setMaxClicks(long maxClicks) {
         this.maxClicks = maxClicks;
