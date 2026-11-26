@@ -29,7 +29,7 @@ public class Main {
         );
         cleanupScheduler.start();
 
-        ConsoleUi consoleUi = new ConsoleUi(linkService);
+        ConsoleUi consoleUi = new ConsoleUi(linkService, appConfig);
         try {
             consoleUi.start();
         } finally {

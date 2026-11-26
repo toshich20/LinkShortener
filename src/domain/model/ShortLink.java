@@ -10,7 +10,7 @@ public class ShortLink {
     private final String longUrl;
     private final String shortCode;
     private final Instant createdAt;
-    private final Instant expiresAt;
+    private Instant expiresAt;
 
     public ShortLink(String longUrl, long ttlHours, long maxClicks, UUID ownerUuid, String shortCode){
         this.createdAt = Instant.now();
